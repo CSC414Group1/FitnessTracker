@@ -30,7 +30,6 @@ class FitnessSurvey extends Component {
     }
 
     toggle(event) {
-        const val = this.state.[event.target.name]
         this.setState({
             [event.target.name]: !!event.target.value
         })
