@@ -6,7 +6,7 @@ const Home = () => {
       <h1>
         Fitness Tracker!
       </h1>
-      Collect fitness and health form your users
+      Collect fitness and health from your users
     </div>
   );
 };
