@@ -23,6 +23,7 @@ class Mailer extends helper.Mail {
         });
     }
 
+    //to allow to see if the link in the email is clicked
     addClickTracking() {
         const trackingSettings = new helper.TrackingSettings();
         const clickTracking = new helper.ClickTracking(true, true);

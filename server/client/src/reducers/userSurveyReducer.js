@@ -1,9 +1,8 @@
-import { GET_SURVEYS } from '../actions/types';
+import { GET_USERSURVEY } from '../actions/types';
 
-//return the surveys when called
 export default function(state = [], action) {
   switch (action.type) {
-    case GET_SURVEYS:
+    case GET_USERSURVEY:
       return action.payload;
     default:
       return state;

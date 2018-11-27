@@ -18,3 +18,8 @@ export const fetchSurveys = () => async dispatch => {
   const res = await axios.get('/api/surveys');
   dispatch({ type: GET_SURVEYS, payload: res.data });
 };
+
+export const sumbitUserSurvey = (data) => async dispatch => {
+  const res = await axios.post('/surveyPost', data);
+  dispatch({ type: GET_USERSURVEY, payload: res.data });
+}

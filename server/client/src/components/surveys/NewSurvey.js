@@ -7,6 +7,8 @@ import FormReview from './FormReview';
 class NewSurvey extends Component {
   constructor(props) {
     super(props)
+    //don't want to always show the review of the survey
+    //only once have clicked the review button and filled out all the form fields
     this.state = { showFormReview: false };
 
   }
@@ -20,6 +22,7 @@ class NewSurvey extends Component {
       );
     }
 
+    //if not reviewing the form, show the original email form to fill out
     return (
       <Form
         onSurveySubmit={() => this.setState({ showFormReview: true })}

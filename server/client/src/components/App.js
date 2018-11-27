@@ -14,6 +14,10 @@ class App extends Component {
     this.props.fetchUser();
   }
 
+  //this is where react router comes in
+  //can put as many routes as possible
+  //exact specifies only to that specific path name
+  //Header is shown on top of every route
   render() {
     return (
       <div className="container">

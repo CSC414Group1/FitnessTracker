@@ -8,6 +8,8 @@ class SurveyList extends Component {
   }
 
   showSurveys() {
+    //use reverse to have the most recent survey shown at the top
+    //the return is using materialize css card formatting to be displayed, why have classname with card
     return this.props.surveys.reverse().map(survey => {
       return (
         <div className="card teal lighten-1" key={survey._id}>

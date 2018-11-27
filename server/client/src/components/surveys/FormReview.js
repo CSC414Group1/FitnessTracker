@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
 const FormReview = ({ onCancel, formValues, submitSurvey, history }) => {
+  //putting all the filled out email info into an array with each field being an element
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
@@ -18,6 +19,7 @@ const FormReview = ({ onCancel, formValues, submitSurvey, history }) => {
     );
   });
 
+  //have a button to cancel if you see any mistakes you have made before emailing out the survey
   return (
     <div>
       <h5>Please confirm your survey to send</h5>

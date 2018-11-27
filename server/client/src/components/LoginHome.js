@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import SurveyList from './surveys/SurveyList';
 
 const LoginHome = () => {
+  //shows all the surveys when first logged in
+  //material-icons allows to have symbols used
   return (
     <div>
       <SurveyList />

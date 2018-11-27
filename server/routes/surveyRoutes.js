@@ -10,7 +10,9 @@ const Survey = mongoose.model('surveys');
 const FitnessInfo = mongoose.model('fitness');
 
 module.exports = app => {
+  //params = route, middleware, callback funct
   app.get('/api/surveys', requireLogin, async (req, res) => {
+    //get all surveys for the specific user logged in
     const surveys = await Survey.find({ _user: req.user.id }).select({
       recipients: false
     });
@@ -19,6 +21,7 @@ module.exports = app => {
   });
 
   app.post('/surveyPost', async (req, res) => {
+    //get all info from survey and save to the database
     const { email, name, weeklyExercise, eatFastFood, bmi } = req.body;
     const fitnessInfo = new FitnessInfo({
         email,
@@ -34,6 +37,7 @@ module.exports = app => {
 
 
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
+    //once click the link redirect to survey page
     res.redirect('/fitnessSurvey');
   });
 
@@ -65,13 +69,14 @@ module.exports = app => {
         ).exec();
       })
       .value();
-
+      //the above is like SQL statement, the .exec() is what makes it actually happen
     res.send({});
   });
 
   app.post('/api/surveys', requireLogin, async (req, res) => {
+    //get info from input page
     const { title, subject, body, recipients } = req.body;
-
+    //create new survey and save to database
     const survey = new Survey({
       title,
       subject,
@@ -81,6 +86,7 @@ module.exports = app => {
       dateSent: Date.now()
     });
 
+    //send out survey using the sendgrid mailer
     const mailer = new Mailer(survey, surveyTemplate(survey));
     
     try {

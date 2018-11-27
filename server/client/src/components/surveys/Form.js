@@ -9,6 +9,8 @@ import formFields from './formFields';
 
 class Form extends Component {
   renderFields() {
+    //go through and utilize Field from redux to create the multiple inputs to be filled out
+    //store into an array
     return _.map(formFields, ({ label, name }) => {
       return (
         <Field
@@ -41,6 +43,10 @@ class Form extends Component {
 }
 
 function checkFields(values) {
+
+  //have constraints on each input field
+  //for all fields, some value must be entered
+  //checks if emails are valid
   const errors = {};
 
   errors.recipients = validateEmails(values.recipients || '');
