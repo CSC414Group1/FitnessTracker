@@ -16,12 +16,9 @@ class Header extends Component {
   }
 
   render() {
-    //if you click the link which is the name of the app takes the user back to the homepage
-    const {match: {url}} = this.props;
-    console.log(url);
     return (
       <nav>
-        <div className="nav-wrapper orange accent-2">
+        <div className="nav-wrapper red accent-4">
           <Link
             to={this.props.auth ? '/loginhome' : '/'}
             className="center brand-logo"

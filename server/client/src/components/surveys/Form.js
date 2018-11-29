@@ -29,7 +29,7 @@ class Form extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFields()}
-          <Link to="/surveys" className="orange accent-2 btn-flat white-text">
+          <Link to="/loginhome" className="orange accent-2 btn-flat white-text">
             Cancel
           </Link>
           <button type="submit" className="teal btn-flat right white-text">
@@ -42,7 +42,7 @@ class Form extends Component {
   }
 }
 
-function checkFields(values) {
+function validate(values) {
 
   //have constraints on each input field
   //for all fields, some value must be entered
@@ -61,7 +61,7 @@ function checkFields(values) {
 }
 
 export default reduxForm({
-  checkFields,
+  validate,
   form: 'surveyForm',
   destroyOnUnmount: false
 })(Form);

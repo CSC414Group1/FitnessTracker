@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const passwordHash = require('password-hash');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Survey');

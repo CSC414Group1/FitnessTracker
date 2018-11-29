@@ -2,6 +2,7 @@ const _ = require('lodash');
 const Path = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
+const passwordHash = require('password-hash');
 const requireLogin = require('../requireLogin');
 const Mailer = require('../Mailer');
 const surveyTemplate = require('./surveyTemplate');
@@ -22,7 +23,9 @@ module.exports = app => {
 
   app.post('/surveyPost', async (req, res) => {
     //get all info from survey and save to the database
-    const { email, name, weeklyExercise, eatFastFood, bmi } = req.body;
+    const { weeklyExercise, eatFastFood, bmi } = req.body;
+    const email = passwordHash.generate(req.body.email);
+    const name = passwordHash.generate(req.body.name);
     const fitnessInfo = new FitnessInfo({
         email,
         name,

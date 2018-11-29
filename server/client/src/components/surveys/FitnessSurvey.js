@@ -15,18 +15,41 @@ class FitnessSurvey extends Component {
             eatFastFood: 0,
             bmi: 0,
             diet: false,
-            show: true
+            show: true,
+            errors: {}
 
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.validateField = this.validateField.bind(this);
         this.toggle = this.toggle.bind(this);
     }
 
     handleChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
         this.setState({
-            [event.target.name]: event.target.value
-        })
+            [name]: value
+        }, () => {this.validateField(name,value)})
+    }
+
+    validateField(name, value) {
+        let errors = {};
+
+        switch(name) {
+            case 'email':
+                errors.email = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? '' : ' Email is not invalid';
+                break;
+            case 'name':
+                errors[name] = (value.length > 0) ? '' : 'Fill in the field';
+                break;
+            default:
+                errors[name] = isNaN(value) ? 'Enter a numeric value' : '';
+                break;
+        }
+        this.setState({
+            errors
+        });
     }
 
     toggle(event) {
@@ -91,31 +114,37 @@ class FitnessSurvey extends Component {
                         Name:
                         <input type="text" name="name" onChange={this.handleChange}/>
                     </label>
+                    {this.state.errors.name}
                     <br/>
                     <label>
                         Email:
                         <input type="text" name="email" onChange={this.handleChange} />
                     </label>
+                    {this.state.errors.email}
                     <br/>
                     <label>
                         What is your height (inches)?
                         <input type="text" name="height" onChange={this.handleChange} />
                     </label>
+                    {this.state.errors.height}
                     <br/>
                     <label>
                         What is your weight (pounds)
                         <input type="text" name="weight" onChange={this.handleChange} />
                     </label>
+                    {this.state.errors.weight}
                     <br/>
                     <label>
                         How many hours do you exercise a week?
                         <input type="text" name="weeklyExercise" onChange={this.handleChange} />
                     </label>
+                    {this.state.errors.weeklyExercise}
                     <br/>
                     <label>
                         How many times a week do you eat fast food?
                         <input type="text" name="eatFastFood" onChange={this.handleChange} />
                     </label>
+                    {this.state.errors.eatFastFood}
                     <br/>
                     <label>
                         <input type="checkbox" name="diet" value={this.state.diet} onChange={this.toggle} />
